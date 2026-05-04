@@ -14,9 +14,11 @@
 <ion-content [fullscreen]="true">
   <ion-item>
     <ion-label position="stacked">Search Movie Name</ion-label>
-    <ion-input placeholder="Enter movie name"></ion-input>
+   
+    <ion-input [(ngModel)]="searchQuery" placeholder="Enter movie name"></ion-input>
   </ion-item>
-  <ion-button expand="full">SEARCH</ion-button>
+  
+  <ion-button expand="full" (click)="onSearch()">SEARCH</ion-button>
 
   <ion-list-header>
     <ion-label>Today's Trending Movies</ion-label>
