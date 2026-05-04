@@ -14,11 +14,15 @@ export class MovieService {
   getMovieDetails(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`);
   }
+
+  getMovieCredits(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`);
+  }
   
   searchMovies(query: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/search/movie?api_key=${this.apiKey}&query=${query}`);
   }
-  
+
   getTrendingMovies(): Observable<any> {
     return this.http.get(`${this.baseUrl}/trending/movie/day?api_key=${this.apiKey}`);
   }
