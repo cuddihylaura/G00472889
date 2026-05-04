@@ -1,13 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>movie-details</ion-title>
+    <ion-buttons slot="start">
+     
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ movie?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">movie-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding" *ngIf="movie">
+  <div class="ion-text-center">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" style="border-radius: 10px; max-width: 80%;" />
+  </div>
+
+  <h2>{{ movie.title }}</h2>
+  <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+  
+  <h3>Overview</h3>
+  <p>{{ movie.overview }}</p>
+
+  <h3>Genres</h3>
+  <ion-chip *ngFor="let genre of movie.genres">
+    <ion-label>{{ genre.name }}</ion-label>
+  </ion-chip>
 </ion-content>
