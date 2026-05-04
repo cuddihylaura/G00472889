@@ -1,12 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-     
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
+    
     <ion-title>{{ movie?.title }}</ion-title>
+
+    <ion-buttons slot="end">
+      <!-- Home Button -->
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <!-- Favourites Button -->
+      <ion-button routerLink="/favourites">
+        <ion-icon slot="icon-only" name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header>>
 
 <ion-content [fullscreen]="true" class="ion-padding" *ngIf="movie">
   <div class="ion-text-center">
