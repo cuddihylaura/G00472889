@@ -24,3 +24,26 @@
     <ion-label>{{ genre.name }}</ion-label>
   </ion-chip>
 </ion-content>
+
+<h3>Cast</h3>
+<ion-list>
+  <ion-item *ngFor="let member of cast">
+    <ion-thumbnail slot="start">
+      <img [src]="'https://image.tmdb.org/t/p/w200' + member.profile_path" *ngIf="member.profile_path" />
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ member.name }}</h2>
+      <p>{{ member.character }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<h3>Crew</h3>
+<ion-list>
+  <ion-item *ngFor="let member of crew">
+    <ion-label>
+      <h2>{{ member.name }}</h2>
+      <p>{{ member.job }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
