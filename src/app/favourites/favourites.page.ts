@@ -25,17 +25,15 @@ CommonModule, FormsModule, RouterModule]
 export class FavouritesPage implements OnInit {
 favouriteMovies: any[] = [];
 
+// Import the required icons for the UI
 constructor(private movieService: MovieService) {
-
-// This registers the icons for this page
 addIcons({ heart, home, person });
  }
 
- ngOnInit() {
+ ngOnInit() {}
+
+ ionViewWillEnter() {
  this.favouriteMovies = this.movieService.getFavourites();
 }
 
- ionViewWillEnter() {
-this.favouriteMovies = this.movieService.getFavourites();
-}
 }
