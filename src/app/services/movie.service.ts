@@ -41,3 +41,4 @@ console.log('Saved to list:', movie.title);
 getFavourites() {
 return this.favourites;
 }
+}
