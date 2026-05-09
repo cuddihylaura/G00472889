@@ -56,7 +56,7 @@ crew: any[] = [];
     if (id) {
       // Get general info
       this.movieService.getMovieDetails(id).subscribe(data => this.movie = data);
-      
+
       // Get cast and crew
       this.movieService.getMovieCredits(id).subscribe(data => {
         this.cast = data.cast;
@@ -64,4 +64,10 @@ crew: any[] = [];
       });
     }
   }
+
+  toggleFavourite() {
+      console.log('You clicked the favourite button for:', this.movie.title);
+      alert(this.movie.title + ' added to favourites!');
+    }
+
 }

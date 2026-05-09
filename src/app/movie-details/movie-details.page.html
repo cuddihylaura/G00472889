@@ -35,12 +35,17 @@
     <ion-label>{{ genre.name }}</ion-label>
   </ion-chip>
 
+  <div class="ion-padding-top"> <ion-button expand="block" (click)="toggleFavourite()">
+     <ion-icon slot="start" name="heart"></ion-icon>
+      Add to Favourites
+     </ion-button> </div>
+
   <h3 class="section-title">Cast</h3>
 <div class="cast-scroll-container" style="display: flex !important; overflow-x: auto !important; gap: 16px; padding: 10px;">
  
   <div class="cast-member-card" *ngFor="let member of cast" style="min-width: 100px; text-align: center;">
     <div class="avatar-wrapper">
-      
+
       <img [src]="'https://image.tmdb.org/t/p/w200' + member.profile_path"
            *ngIf="member.profile_path"
            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" />
