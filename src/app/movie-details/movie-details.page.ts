@@ -3,7 +3,7 @@ import {
   IonHeader, IonToolbar, IonButtons, IonBackButton, 
   IonTitle, IonButton, IonIcon, IonContent, 
   IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, 
-  IonCardContent, IonChip, IonLabel, IonList, IonItem, IonThumbnail 
+  IonCardContent, IonChip, IonLabel, IonList, IonItem, IonThumbnail, IonAvatar
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { home, heart, person } from 'ionicons/icons';
@@ -36,7 +36,8 @@ import { MovieService } from '../services/movie.service';
     IonCardHeader,
     IonCard,
     IonCardContent,
-    IonCardTitle
+    IonCardTitle,
+    IonAvatar
   ]
 })
 export class MovieDetailsPage implements OnInit {
@@ -59,7 +60,7 @@ crew: any[] = [];
 
       // Get cast and crew
       this.movieService.getMovieCredits(id).subscribe(data => {
-        this.cast = data.cast;
+        this.cast = data.cast.slice(0,10); // Only include the top 10 actors
         this.crew = data.crew;
       });
     }

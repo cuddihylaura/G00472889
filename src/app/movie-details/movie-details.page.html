@@ -40,28 +40,21 @@
       Add to Favourites
      </ion-button> </div>
 
-  <h3 class="section-title">Cast</h3>
-<div class="cast-scroll-container" style="display: flex !important; overflow-x: auto !important; gap: 16px; padding: 10px;">
- 
-  <div class="cast-member-card" *ngFor="let member of cast" style="min-width: 100px; text-align: center;">
-    <div class="avatar-wrapper">
-
-      <img [src]="'https://image.tmdb.org/t/p/w200' + member.profile_path"
-           *ngIf="member.profile_path"
-           style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" />
+     <h3 class="section-title">Cast</h3>
+     <div class="cast-scroll-container" style="display: flex; overflow-x: auto; gap: 16px; padding: 10px; -webkit-overflow-scrolling: touch;">
+      
+       <div class="cast-member-card" *ngFor="let member of cast" style="min-width: 100px; text-align: center;">
+         <ion-avatar style="width: 80px; height: 80px; margin: 0 auto;">
+           <img [src]="member.profile_path ? 'https://image.tmdb.org/t/p/w200' + member.profile_path : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+         </ion-avatar>
      
-      <div *ngIf="!member.profile_path" style="width: 80px; height: 80px; border-radius: 50%; background: #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-        <ion-icon name="person" style="font-size: 40px;"></ion-icon>
-      </div>
-    </div>
-
-    <div class="cast-info">
-      <p style="font-size: 0.8rem; font-weight: bold; margin: 5px 0 0;">{{ member.name }}</p>
-      <p style="font-size: 0.7rem; color: gray;">{{ member.character }}</p>
-    </div>
-  </div>
-
-</div>
+         <div class="cast-info">
+           <p style="font-size: 0.8rem; font-weight: bold; margin: 5px 0 0;">{{ member.name }}</p>
+           <p style="font-size: 0.7rem; color: gray; margin: 0;">{{ member.character }}</p>
+         </div>
+       </div>
+     
+     </div>
 
   <h3 class="section-title">Crew</h3>
   <ion-list>
