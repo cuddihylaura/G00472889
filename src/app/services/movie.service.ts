@@ -47,6 +47,12 @@ export class MovieService {
     }
   }
 
+  removeFromFavourites(movie: any) {
+    this.favourites = this.favourites.filter(m => m.id !== movie.id);
+     localStorage.setItem('my_fav_movies', JSON.stringify(this.favourites));
+    console.log('Removed and storage updated:', movie.title);
+     }
+     
   getFavourites() {
     return this.favourites;
   }

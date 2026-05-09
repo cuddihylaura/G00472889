@@ -8,7 +8,7 @@ IonList, IonItem, IonThumbnail, IonLabel,
 } from '@ionic/angular/standalone';
 import { MovieService } from '../services/movie.service';
 import { addIcons } from 'ionicons';
-import { heart, home, person } from 'ionicons/icons';
+import { heart, home, person, trash } from 'ionicons/icons';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -27,7 +27,7 @@ favouriteMovies: any[] = [];
 
 // Import the required icons for the UI
 constructor(private movieService: MovieService) {
-addIcons({ heart, home, person });
+addIcons({ heart, home, person, trash });
  }
 
  ngOnInit() {}
@@ -35,5 +35,15 @@ addIcons({ heart, home, person });
  ionViewWillEnter() {
  this.favouriteMovies = this.movieService.getFavourites();
 }
-
+removeMovie(movie: any, event: Event) {
+  // Stop navigation to details from triggering when deleting
+  event.preventDefault();
+  event.stopPropagation();
+ 
+  // Tell movie service to remove movie from list
+  this.movieService.removeFromFavourites(movie);
+ 
+  // Reload favourites list after deletion
+  this.favouriteMovies = this.movieService.getFavourites();
+}
 }

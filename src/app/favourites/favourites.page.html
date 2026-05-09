@@ -14,14 +14,19 @@
    </div>
   
    <ion-list *ngIf="favouriteMovies.length > 0">
-   <ion-item *ngFor="let movie of favouriteMovies" [routerLink]="['/movie-details', movie.id]">
-   <ion-thumbnail slot="start">
-   <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" />
-   </ion-thumbnail>
-   <ion-label>
-   <h2>{{ movie.title }}</h2>
-  <p>{{ movie.release_date }}</p>
-   </ion-label>
-  </ion-item>
+    <ion-item *ngFor="let movie of favouriteMovies" [routerLink]="['/movie-details', movie.id]">
+      <ion-thumbnail slot="start">
+        <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" />
+      </ion-thumbnail>
+     
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.release_date }}</p>
+      </ion-label>
+    
+      <ion-button slot="end" fill="clear" color="danger" (click)="removeMovie(movie, $event)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
   </ion-list>
   </ion-content>
