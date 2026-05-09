@@ -26,4 +26,18 @@ export class MovieService {
   getTrendingMovies(): Observable<any> {
     return this.http.get(`${this.baseUrl}/trending/movie/day?api_key=${this.apiKey}`);
   }
+
+// 1. A basic list to hold our favourite movies
+private favourites: any[] = [];
+
+addToFavourites(movie: any) {
+  // Check if movie is already there to avoid duplicates
+  if (!this.favourites.find(m => m.id == movie.id)) {
+this.favourites.push(movie);
+console.log('Saved to list:', movie.title);
+}
+}
+
+getFavourites() {
+return this.favourites;
 }

@@ -66,8 +66,8 @@ crew: any[] = [];
   }
 
   toggleFavourite() {
-      console.log('You clicked the favourite button for:', this.movie.title);
-      alert(this.movie.title + ' added to favourites!');
+    this.movieService.addToFavourites(this.movie);
+    alert(this.movie.title + ' saved to your favourites list!');
     }
 
 }
