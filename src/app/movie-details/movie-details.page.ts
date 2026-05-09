@@ -6,7 +6,7 @@ import {
   IonCardContent, IonChip, IonLabel, IonList, IonItem, IonThumbnail 
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { home, heart } from 'ionicons/icons';
+import { home, heart, person } from 'ionicons/icons';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -32,7 +32,12 @@ import { MovieService } from '../services/movie.service';
     IonChip,
     IonList,
     IonItem,
-    IonThumbnail]
+    IonThumbnail,
+    IonCardHeader,
+    IonCard,
+    IonCardContent,
+    IonCardTitle
+  ]
 })
 export class MovieDetailsPage implements OnInit {
   movie: any = null;
@@ -43,7 +48,7 @@ crew: any[] = [];
     private route: ActivatedRoute,
     private movieService: MovieService
   ) {
-    addIcons({ home, heart });
+    addIcons({ home, heart, person });
   }
 
   ngOnInit() {
