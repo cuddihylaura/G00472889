@@ -59,14 +59,16 @@
      
      </div>
 
-  <h3 class="section-title">Crew</h3>
-  <ion-list>
-    <ion-item *ngFor="let member of crew">
-      <ion-label>
-        <h2>{{ member.name }}</h2>
-        <p>{{ member.job }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+     <h3 class="section-title">Crew</h3>
+     <ion-list>
+       <ion-item *ngFor="let member of crew" [routerLink]="['/person-details', member.id]" detail="true">
+         <ion-avatar slot="start">
+           <img [src]="member.profile_path ? 'https://image.tmdb.org/t/p/w200' + member.profile_path : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+         </ion-avatar>
+         <ion-label>
+           <h2>{{ member.name }}</h2>
+           <p>{{ member.job }}</p>
+         </ion-label>
+       </ion-item>
+     </ion-list>
 

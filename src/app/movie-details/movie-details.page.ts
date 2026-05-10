@@ -60,8 +60,8 @@ crew: any[] = [];
 
       // Get cast and crew
       this.movieService.getMovieCredits(id).subscribe(data => {
-        this.cast = data.cast.slice(0,10); // Only include the top 10 actors
-        this.crew = data.crew;
+        this.cast = data.cast.slice(0,15); // Only include the top 15 actors
+        this.crew = data.crew.slice(0,15); // Only include the top 15 crew
       });
     }
   }
