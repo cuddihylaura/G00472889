@@ -1,13 +1,48 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>person-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ person?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">person-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding" *ngIf="person">
+  <div class="ion-text-center">
+    <img [src]="person.profile_path ? 'https://image.tmdb.org/t/p/w500' + person.profile_path : 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+         style="border-radius: 15px; max-width: 70%; margin-bottom: 15px;" />
+  </div>
+
+  <h2>{{ person.name }}</h2>
+
+  <div *ngIf="person.birthday" class="ion-margin-bottom">
+    <p style="font-size: 1.1rem; margin-bottom: 2px;">
+      <strong>{{ person.birthday }} - {{ person.deathday || '' }}</strong>
+    </p>
+    <p *ngIf="person.place_of_birth" style="color: gray; font-size: 0.9rem; margin-top: 0;">
+      {{ person.place_of_birth }}
+    </p>
+  </div>
+
+  <div *ngIf="person.also_known_as?.length > 0">
+    <p><strong>AKA:</strong> {{ person.also_known_as.join(', ') }}</p>
+  </div>
+
+  <h3>Biography</h3>
+  <p>{{ person.biography || 'No biography available for this person.' }}</p>
+
+  <hr />
+
+  <h3>Known For</h3>
+  <ion-list>
+    <ion-item *ngFor="let m of movies" [routerLink]="['/movie-details', m.id]">
+      <ion-thumbnail slot="start">
+        <img [src]="'https://image.tmdb.org/t/p/w200' + m.poster_path" *ngIf="m.poster_path" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ m.title }}</h2>
+        <p>as {{ m.character || 'Crew' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

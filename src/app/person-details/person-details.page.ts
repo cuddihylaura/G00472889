@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons,
+  IonBackButton, IonList, IonItem, IonThumbnail, IonLabel, IonText
+ } from '@ionic/angular/standalone';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 
@@ -10,7 +12,9 @@ import { MovieService } from '../services/movie.service';
   templateUrl: './person-details.page.html',
   styleUrls: ['./person-details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,
+    RouterModule, IonButtons, IonBackButton, IonList, IonItem, IonThumbnail, IonLabel, IonText
+  ]
 })
 export class PersonDetailsPage implements OnInit {
   person: any = null;
