@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-person-details',
@@ -11,10 +13,27 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class PersonDetailsPage implements OnInit {
+  person: any = null;
+  movies: any[] = [];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private movieService: MovieService
+  ) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      // Get Person Bio and Info
+      this.movieService.getPersonDetails(id).subscribe(data => {
+        this.person = data;
+      });
+
+      // Get their Movie Credits
+      this.movieService.getPersonMovies(id).subscribe(data => {
+        this.movies = data.cast;
+      });
+    }
   }
 
 }

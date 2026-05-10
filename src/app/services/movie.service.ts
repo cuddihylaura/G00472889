@@ -34,6 +34,14 @@ export class MovieService {
     return this.http.get(`${this.baseUrl}/trending/movie/day?api_key=${this.apiKey}`);
   }
 
+  getPersonDetails(personId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/person/${personId}?api_key=${this.apiKey}`);
+  }
+
+  getPersonMovies(personId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/person/${personId}/movie_credits?api_key=${this.apiKey}`);
+  }
+
   private favourites: any[] = [];
 
   // Update the local storage string whenever a new movie is added
