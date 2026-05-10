@@ -44,6 +44,7 @@ export class MovieDetailsPage implements OnInit {
   movie: any = null;
   cast: any[] = [];
 crew: any[] = [];
+isFavourite: boolean = false; 
 
   constructor(
     private route: ActivatedRoute,
@@ -62,13 +63,33 @@ crew: any[] = [];
       this.movieService.getMovieCredits(id).subscribe(data => {
         this.cast = data.cast.slice(0,15); // Only include the top 15 actors
         this.crew = data.crew.slice(0,15); // Only include the top 15 crew
+
+        const favourites = JSON.parse(localStorage.getItem('favourites') || '[]'); 
+        this.isFavourite = favourites.some((m: any) => m.id == id);
+
       });
     }
   }
 
   toggleFavourite() {
-    this.movieService.addToFavourites(this.movie);
-    alert(this.movie.title + ' saved to your favourites list!');
+    let favourites = JSON.parse(localStorage.getItem('favourites') || '[]');
+  
+    if (this.isFavourite) {
+     
+      favourites = favourites.filter((m: any) => m.id !== this.movie.id);
+    } else {
+     
+      favourites.push({
+        id: this.movie.id,
+        title: this.movie.title,
+        poster_path: this.movie.poster_path,
+        release_date: this.movie.release_date
+      });
     }
+  
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+  
+    this.isFavourite = !this.isFavourite;
+  }
 
 }

@@ -35,10 +35,17 @@
     <ion-label>{{ genre.name }}</ion-label>
   </ion-chip>
 
-  <div class="ion-padding-top"> <ion-button expand="block" (click)="toggleFavourite()">
-     <ion-icon slot="start" name="heart"></ion-icon>
+  <div class="ion-padding-top">
+    <ion-button *ngIf="!isFavourite" expand="block" color="primary" (click)="toggleFavourite()">
+      <ion-icon slot="start" name="heart-outline"></ion-icon>
       Add to Favourites
-     </ion-button> </div>
+    </ion-button>
+  
+    <ion-button *ngIf="isFavourite" expand="block" color="danger" (click)="toggleFavourite()">
+      <ion-icon slot="start" name="heart"></ion-icon>
+      Remove from Favourites
+    </ion-button>
+  </div>
 
      <h3 class="section-title">Cast</h3>
      <div class="cast-scroll-container" style="display: flex; overflow-x: auto; gap: 16px; padding: 10px; -webkit-overflow-scrolling: touch;">
